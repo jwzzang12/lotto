@@ -4,12 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random LOTTO</title>
+    <title>LOTTERY</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Space+Mono&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/layout.css" />
   </head>
@@ -28,14 +27,17 @@
       <div class="paper">
         <div class="titleBox">
           <h2>LOTTERY</h2>
-          <p class="until">발행일:오늘 (요일)</p>
-          <p class="thisWeek">추첨일:이번주 토요일 날짜 (토)</p>
-          <p class="until">지급기한:이번주 토요일기준 1년</p>
+          <p class="desc">Good luck for your draw!</p>
         </div>
         <div class="randomNum"></div>
-        <div class="howMuch">금액W5000</div>
+        <div class="howMuch"></div>
         <div class="barcode">
           <div>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
             <span></span>
             <span></span>
             <span></span>
@@ -52,28 +54,12 @@
     </div>
     <script>
       const randomNum = document.querySelector(".randomNum");
+      const howMuch = document.querySelector(".howMuch");
+      const barcode = document.querySelector(".barcode");
       const radioList = document.querySelectorAll(".radio");
-      const date = document.querySelector(".date");
-      const thisWeek = document.querySelector(".thisWeek");
-      const until = document.querySelector(".until");
-
       const addZero = function (num) {
         return num < 10 ? "0" + num : "" + num;
       };
-
-      const now = new Date();
-      const day = ["일", "월", "화", "수", "목", "금", "토"];
-      const nowYear = now.getFullYear().toString();
-      const nowMonth = addZero(now.getMonth() + 1).toString();
-      const nowDate = addZero(now.getDate()).toString();
-      const nowDay = day[now.getDay()];
-      const nowTime = now.getTime();
-      console.log("🚀 ~ file: index.html ~ line 71 ~ nowTime", nowTime);
-
-      const today = `${nowYear}/${nowMonth}/${nowDate} (${nowDay})`;
-      console.log("🚀 ~ file: index.html ~ line 72 ~ today", today);
-
-      // if(day=6)이 아닌경우
 
       for (let i = 0; i < 5; i++) {
         radioList[i].addEventListener("change", function () {
@@ -98,6 +84,8 @@
             tempHtml += `</ul>`;
             randomNum.innerHTML = tempHtml;
           }
+          howMuch.innerHTML = `&#8361;${i + 1}000`;
+          barcode.classList.add("on");
         });
       }
     </script>
